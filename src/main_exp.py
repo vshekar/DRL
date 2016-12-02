@@ -43,7 +43,7 @@ class main:
                 # Decreasing number of random actions in time
                 if random.uniform(0, 1) < self.__compute_epsilon__() or len(self.memory.D) < self.minibatch_size or len(self.memory.screenshots) < self.memory.game_step_phase:
                     action = random.choice(range(self.actions_number))
-                    print "\naction RAND:", action
+                    #print "\naction RAND:", action
                 else:
                     action = self.n_net.predict_action(self.memory.get_actual_state())
                     print '\naction NEURALNET:', action
@@ -56,9 +56,9 @@ class main:
                 self.count += 1
                 self.T += 1
                 timeStop = time.time()
-                print "Step:", self.steps
+                #print "Step:", self.steps
                 # Time used for iteration in minutes
-                print round((timeStop - timeStart) / 60, 5)
+                #print round((timeStop - timeStart) / 60, 5)
             self.ale.finish_game()
             # Saving model
             if self.count >= 20000:
@@ -69,7 +69,7 @@ class main:
             self.n_net.printedW()
             self.T = 0
             self.M += 1
-            print "Episode:", self.M
+            #print "Episode:", self.M
             
 if __name__ == '__main__':
     T = main()

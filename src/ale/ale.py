@@ -35,7 +35,7 @@ class ale:
         os.system("mkfifo ale_fifo_out")
         os.system("mkfifo ale_fifo_in")
         # Game loading and starting
-        start_command = './../emulators/ale_0_4/ale -max_num_episodes 0 -game_controller fifo_named -disable_colour_averaging true -run_length_encoding false -frame_skip ' + str(self.frames_to_skip) + ' -display_screen ' + self.display_screen + " " + self.ale_game_ROM + " &"
+        start_command = './../emulators/ale_0_5/ale -max_num_episodes 0 -game_controller fifo_named -disable_colour_averaging true -run_length_encoding false -frame_skip ' + str(self.frames_to_skip) + ' -display_screen ' + self.display_screen + " " + self.ale_game_ROM + " &"
         print start_command
         os.system(start_command)
         # Read and write commands and response from emulator

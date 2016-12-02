@@ -1,3 +1,3 @@
 #!/bin/bash
-time THEANO_FLAGS=mode=FAST_RUN,floatX=float32,device=gpu python $*
+time THEANO_FLAGS=mode=FAST_RUN,floatX=float32,device=gpu,force_device=True python $*
 

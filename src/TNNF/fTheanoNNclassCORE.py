@@ -23,9 +23,10 @@ import matplotlib.pyplot as plt
 from fImageWorkerCORE import *
 from pylearn2.sandbox.cuda_convnet.filter_acts import FilterActs
 from pylearn2.sandbox.cuda_convnet.pool import MaxPool
-from theano.sandbox.cuda.basic_ops import gpu_contiguous
-from theano.tensor.signal import downsample
-
+#from theano.sandbox.cuda.basic_ops import gpu_contiguous
+from theano.gpuarray.basic_ops import gpu_contiguous
+#from theano.tensor.signal import downsample
+from theano.tensor.signal import pool
 
 #---------------------------------------------------------------------#
 # Activation functions
@@ -470,7 +471,9 @@ class LayerCNN(LayerNN):
                 a = pool_op(contiguous_input)
                 a = a.dimshuffle(3, 0, 1, 2)       # c01b to bc01
             else:
-                a = downsample.max_pool_2d(a, (self.pooling_shape, self.pooling_shape), ignore_border=False)
+                #a = downsample.max_pool_2d(a, (self.pooling_shape, self.pooling_shape), ignore_border=False)
+                a = pool.pool_2d(a, (self.pooling_shape, self.pooling_shape), ignore_border=False)
+
         else:
             if self.optimized:
                 a = a.dimshuffle(3, 0, 1, 2)       # c01b to bc01
@@ -527,7 +530,9 @@ class LayerCNN(LayerNN):
                 a = pool_op(contiguous_input)
                 a = a.dimshuffle(3, 0, 1, 2)       # c01b to bc01
             else:
-                a = downsample.max_pool_2d(a, (self.pooling_shape, self.pooling_shape), ignore_border=False)
+                #a = downsample.max_pool_2d(a, (self.pooling_shape, self.pooling_shape), ignore_border=False)
+                a = pool.pool_2d(a, (self.pooling_shape, self.pooling_shape), ignore_border=False)
+
         else:
             if self.optimized:
                 a = a.dimshuffle(3, 0, 1, 2)       # c01b to bc01

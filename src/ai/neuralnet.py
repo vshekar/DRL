@@ -28,7 +28,7 @@ class neuralnet:
                                          stride=4,
                                          pooling=False,
                                          pooling_shape=2,
-                                         optimized=True)
+                                         optimized=False)
 
         L2 = fTheanoNNclassCORE.LayerCNN(size_in=6400,
                                          size_out=2592,
@@ -41,7 +41,7 @@ class neuralnet:
                                          stride=2,
                                          pooling=False,
                                          pooling_shape=2,
-                                         optimized=True)
+                                         optimized=False)
 
         L3 = fTheanoNNclassCORE.LayerNN(size_in=2592,
                                         size_out=256,
